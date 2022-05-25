@@ -4,11 +4,17 @@
     <meta charset="UTF-8">
     <title>Рецепты</title>
 </head>
+
 <body>
+{% if recipe is not None%}
+    <h3 style="color: cornflowerblue"> Количество ингридентов для блюда: {{ food|title }}</h3>
+{% endif %}
+<ul>
 {% for ingredient, amount in recipe.items %}
-    <p>{{ ingredient }}: {{ amount }}</p>
+    <li style="color: blueviolet">{{ ingredient.capitalize }}: {{ amount }}</li>
 {% empty %}
-    <p>Такого рецепта не знаю :(</p>
+    <li>Такого рецепта не знаю :(</li>
 {% endfor %}
+</ul>
 </body>
 </html>
