@@ -7,7 +7,7 @@ def index(request):
 
 def show_catalog(request):
     sort_param = request.GET.get('sort')
-    sort_dict = {'name': 'name', 'min_price': 'price', 'max_price': "-price"}
+    sort_dict = {'name': 'name', 'min_price': 'price', 'max_price': "-price", None: 'name'}
     template = 'catalog.html'
     phones = Phone.objects.all().order_by(sort_dict.get(sort_param))
     context = {

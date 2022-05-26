@@ -16,5 +16,50 @@
       "author": "Джордж Оруэл",
       "pub_date": "2016-12-06"
     }
+  },
+    {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "Пробуждение Левиафана",
+      "author": "Джеймс Кори",
+      "pub_date": "2021-14-07"
+    }
+  },
+    {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "Пост",
+      "author": "Дмитрий Глуховский",
+      "pub_date": "2020-12-17"
+    }
+  },
+    {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "1984",
+      "author": "Джордж Оруэл",
+      "pub_date": "2016-12-06"
+    }
+  },
+    {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "Sapiens. Краткая история человечества",
+      "author": "Юваль Ной Харари",
+      "pub_date": "2016-12-08"
+    }
+  },
+    {
+    "model": "books.book",
+    "pk": 2,
+    "fields": {
+      "name": "История Amazon. Джефф Безос",
+      "author": "Джефф Безос",
+      "pub_date": "2017-06-17"
+    }
   }
 ]
