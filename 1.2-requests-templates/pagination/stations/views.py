@@ -12,9 +12,8 @@ CONTENT_BUS = []
 
 def _get_content():
     with open(settings.BUS_STATION_CSV, newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile, delimiter=",")
-        for row in reader:
-            CONTENT_BUS.append(row)
+        reader = list(csv.DictReader(csvfile, delimiter=","))
+        CONTENT_BUS.extend(reader)
 
 def bus_stations(request):
     page_number = request.GET.get('page', 1)
