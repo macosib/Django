@@ -17,6 +17,3 @@ class Phone(models.Model):
         return f'{self.name} {self.price} {self.release_date} {self.slug}'
 
 
-"""В файле models.py 
-1;Samsung Galaxy Edge 2;https://avatars.mds.yandex.net/get-mpic/364668/img_id5636027222104023144.jpeg/orig;73000;2016-12-12;True
-нашего приложения создаем модель Phone с полями id, name, price, image, release_date, lte_exists и slug. Поле id - должно быть основным ключом модели."""
