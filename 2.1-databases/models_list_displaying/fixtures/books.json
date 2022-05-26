@@ -19,16 +19,16 @@
   },
     {
     "model": "books.book",
-    "pk": 2,
+    "pk": 3,
     "fields": {
       "name": "Пробуждение Левиафана",
       "author": "Джеймс Кори",
-      "pub_date": "2021-14-07"
+      "pub_date": "2021-07-14"
     }
   },
     {
     "model": "books.book",
-    "pk": 2,
+    "pk": 4,
     "fields": {
       "name": "Пост",
       "author": "Дмитрий Глуховский",
@@ -37,16 +37,7 @@
   },
     {
     "model": "books.book",
-    "pk": 2,
-    "fields": {
-      "name": "1984",
-      "author": "Джордж Оруэл",
-      "pub_date": "2016-12-06"
-    }
-  },
-    {
-    "model": "books.book",
-    "pk": 2,
+    "pk": 5,
     "fields": {
       "name": "Sapiens. Краткая история человечества",
       "author": "Юваль Ной Харари",
@@ -55,7 +46,7 @@
   },
     {
     "model": "books.book",
-    "pk": 2,
+    "pk": 6,
     "fields": {
       "name": "История Amazon. Джефф Безос",
       "author": "Джефф Безос",
