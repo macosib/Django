@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'articles.apps.ArticlesConfig'
+    'articles.apps.ArticlesConfig',
+    "debug_toolbar",
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -48,8 +50,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
-
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 ROOT_URLCONF = 'website.urls'
 
 TEMPLATES = [
@@ -79,6 +84,8 @@ DATABASES = {
         'NAME': 'netology_m2m_relations',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'USER': 'oleg',
+        'PASSWORD': '4Fabregas15'
     }
 }
 

@@ -1,8 +1,35 @@
 from django.contrib import admin
+from .models import Article, ArticleScope, Tag
+from django.core.exceptions import ValidationError
+from django.forms import BaseInlineFormSet
 
-from .models import Article
+class ArticleScopeInlineFormset(BaseInlineFormSet):
+    def clean(self):
+        flag = False
+        for form in self.forms:
+            if form.cleaned_data.get('is_main') is True:
+                if not flag:
+                    flag = True
+                else:
+                    raise ValidationError('Только один тэг может быть главным. Необходимо исправить')
+        return super().clean()
 
+
+class ArticleScopeInline(admin.TabularInline):
+    model = ArticleScope
+    formset = ArticleScopeInlineFormset
+    extra = 0
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['title', 'text', 'published_at', 'image']
+    inlines = [ArticleScopeInline]
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
+
+
+
