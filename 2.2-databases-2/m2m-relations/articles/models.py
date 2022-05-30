@@ -18,6 +18,7 @@ class Article(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя раздела')
+    articles = models.ManyToManyField(Article, through='ArticleScope')
 
     class Meta:
         verbose_name = 'Раздел'
