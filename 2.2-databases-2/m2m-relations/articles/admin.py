@@ -3,6 +3,7 @@ from .models import Article, ArticleScope, Tag
 from django.core.exceptions import ValidationError
 from django.forms import BaseInlineFormSet
 
+
 class ArticleScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
         flag = False
@@ -11,7 +12,9 @@ class ArticleScopeInlineFormset(BaseInlineFormSet):
                 if not flag:
                     flag = True
                 else:
-                    raise ValidationError('Только один тэг может быть главным. Необходимо исправить')
+                    raise ValidationError('Основным может быть только один раздел')
+        if not flag:
+            raise ValidationError('Укажите основной раздел')
         return super().clean()
 
 
@@ -19,6 +22,7 @@ class ArticleScopeInline(admin.TabularInline):
     model = ArticleScope
     formset = ArticleScopeInlineFormset
     extra = 0
+
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
@@ -29,7 +33,3 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name']
-
-
-
-

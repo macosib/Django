@@ -10,22 +10,31 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'статью'
         verbose_name_plural = 'статьи'
+        ordering = ['-published_at']
 
     def __str__(self):
         return self.title
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=30, verbose_name='Имя тэга')
+    name = models.CharField(max_length=30, verbose_name='Имя раздела')
 
     class Meta:
-        verbose_name = 'тэг'
-        verbose_name_plural = 'тэги'
+        verbose_name = 'Раздел'
+        verbose_name_plural = 'Разделы'
 
     def __str__(self):
         return f'{self.name}'
 
+
 class ArticleScope(models.Model):
     articles = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes')
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='scopes')
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, verbose_name='Раздел', related_name='scopes')
     is_main = models.BooleanField()
+
+    class Meta:
+        verbose_name = 'Раздел'
+        verbose_name_plural = 'Тематика статьи'
+
+    def __str__(self):
+        return f'{self.articles} {self.tag}'
