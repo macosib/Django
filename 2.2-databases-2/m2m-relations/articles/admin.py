@@ -8,7 +8,7 @@ class ArticleScopeInlineFormset(BaseInlineFormSet):
     def clean(self):
         flag = False
         for form in self.forms:
-            if form.cleaned_data.get('is_main') is True:
+            if form.cleaned_data.get('is_main') and not form.cleaned_data.get('DELETE'):
                 if not flag:
                     flag = True
                 else:
