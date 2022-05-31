@@ -2,9 +2,9 @@
 # TODO: ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
 
 
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
 from measurement.models import Sensor, Measurement
-from measurement.serializers import SensorSerializer, MeasurementSerializer
+from measurement.serializers import SensorSerializer, MeasurementSerializer, SensorSingleSerializer
 
 
 class SensorListCreateAPIView(ListCreateAPIView):
@@ -14,9 +14,9 @@ class SensorListCreateAPIView(ListCreateAPIView):
 
 class SensorRetrieveUpdateAPIView(RetrieveUpdateAPIView):
     queryset = Sensor.objects.all()
-    serializer_class = SensorSerializer
+    serializer_class = SensorSingleSerializer
 
 
-class MeasurementListCreateAPIView(ListCreateAPIView):
+class MeasurementListCreateAPIView(CreateAPIView):
     queryset = Measurement.objects.all()
     serializer_class = MeasurementSerializer
