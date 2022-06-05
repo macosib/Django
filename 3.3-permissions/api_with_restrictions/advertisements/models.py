@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -11,7 +12,6 @@ class AdvertisementStatusChoices(models.TextChoices):
 
 class Advertisement(models.Model):
     """Объявление."""
-
     title = models.TextField()
     description = models.TextField(default='')
     status = models.TextField(
