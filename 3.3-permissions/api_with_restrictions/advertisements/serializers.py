@@ -22,7 +22,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Advertisement
         fields = ('id', 'title', 'description', 'creator',
-                  'status', 'created_at', 'updated_at')
+                  'status', 'created_at', 'updated_at', 'draft')
 
     def create(self, validated_data):
         validated_data["creator"] = self.context["request"].user
@@ -37,9 +37,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 class AdvertisementFavoritesSerializer(serializers.ModelSerializer):
     """Serializer для избранных объявлений."""
     advertisement = AdvertisementSerializer()
+
     class Meta:
         model = AdvertisementFavorites
         fields = ('user', 'advertisement')
-
-    # def create(self, validated_data):
-    #     return AdvertisementFavorites.objects.create(user=validated_data['user'], advertisement=validated_data['advertisement'])

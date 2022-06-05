@@ -15,6 +15,14 @@ class AdvertisementViewSet(ModelViewSet):
     filter_backends = (filters.DjangoFilterBackend,)
     filterset_class = AdvertisementFilter
 
+    def list(self, request, *args, **kwargs):
+        filter_queryset = []
+        for adv in Advertisement.objects.all():
+            if (adv.draft is False) or adv.creator == request.user:
+                filter_queryset.append(adv)
+        serializer = AdvertisementSerializer(filter_queryset, many=True)
+        return Response(serializer.data)
+
     @action(detail=True, methods=['post'])
     def add_to_favorites(self, request, pk=None):
         if request.data.get('creator') is not None and self.request.user.id == request.data.get('creator').get('id'):
@@ -29,9 +37,9 @@ class AdvertisementViewSet(ModelViewSet):
     def get_permissions(self):
         if self.request.user.is_staff:
             return [IsAdminUser()]
-        if self.action == "create":
+        if self.action == ["create", "add_to_favorites"]:
             return [IsAuthenticated()]
-        if self.action in ["update", "partial_update", "destroy", "add_to_favorites"]:
+        if self.action in ["update", "partial_update", "destroy"]:
             return [IsOwnerOrReadOnlyPermission()]
         return []
 
@@ -40,3 +48,7 @@ class AdvertisementFavoritesViewSet(ModelViewSet):
     queryset = AdvertisementFavorites.objects.all()
     serializer_class = AdvertisementFavoritesSerializer
 
+    def list(self, request, *args, **kwargs):
+        queryset = AdvertisementFavorites.objects.filter(user=request.user)
+        serializer = AdvertisementFavoritesSerializer(queryset, many=True)
+        return Response(serializer.data)
