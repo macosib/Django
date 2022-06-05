@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from advertisements.models import Advertisement
+from advertisements.models import Advertisement, AdvertisementFavorites
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,3 +33,10 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         if len(Advertisement.objects.filter(creator=user, status='OPEN')) >= 10:
             raise serializers.ValidationError("You can't open more than 10 ads")
         return data
+
+class AdvertisementFavoritesSerializer(serializers.ModelSerializer):
+    """Serializer для избранных объявлений."""
+    advertisement = AdvertisementSerializer(many=True)
+    class Meta:
+        model = AdvertisementFavorites
+        fields = ('id', 'user', 'advertisement')

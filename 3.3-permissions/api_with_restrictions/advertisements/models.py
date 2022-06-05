@@ -28,3 +28,11 @@ class Advertisement(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True
     )
+
+class AdvertisementFavorites(models.Model):
+    """Избрынне объявления."""
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+    )
+    advertisement = models.ManyToManyField(Advertisement, related_name='advertisements')
