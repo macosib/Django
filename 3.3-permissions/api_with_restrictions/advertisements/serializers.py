@@ -36,7 +36,10 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
 class AdvertisementFavoritesSerializer(serializers.ModelSerializer):
     """Serializer для избранных объявлений."""
-    advertisement = AdvertisementSerializer(many=True)
+    advertisement = AdvertisementSerializer()
     class Meta:
         model = AdvertisementFavorites
-        fields = ('id', 'user', 'advertisement')
+        fields = ('user', 'advertisement')
+
+    # def create(self, validated_data):
+    #     return AdvertisementFavorites.objects.create(user=validated_data['user'], advertisement=validated_data['advertisement'])

@@ -29,10 +29,11 @@ class Advertisement(models.Model):
         auto_now=True
     )
 
+
 class AdvertisementFavorites(models.Model):
-    """Избрынне объявления."""
+    """Избранные объявления."""
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    advertisement = models.ManyToManyField(Advertisement, related_name='advertisements')
+    advertisement = models.ForeignKey(Advertisement, on_delete=models.CASCADE, related_name='advertisements')
