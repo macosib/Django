@@ -30,6 +30,8 @@ class AdvertisementSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user = self.context["request"].user
+        if data.get('status') == 'CLOSED':
+            return data
         if len(Advertisement.objects.filter(creator=user, status='OPEN')) >= 10:
             raise serializers.ValidationError("You can't open more than 10 ads")
         return data
